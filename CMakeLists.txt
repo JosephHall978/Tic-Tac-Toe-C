@@ -3,4 +3,4 @@ project(CGames C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(CGames main.c ticTacToe.c ticTacToe.h)
+add_executable(CGames main.c ticTacToe.c ticTacToe.h cardGame.c)
