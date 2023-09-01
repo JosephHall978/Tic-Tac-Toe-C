@@ -17,7 +17,50 @@ int generateDeck(char* deck){
             cardPosition++;
         }
     }
-    return 1;
+    return 0;
+}
+
+int prettyDisplay(char face, char suit){
+    switch(face){
+        //ace
+        case 'A':
+            printf("Ace of ");
+            break;
+        //jack
+        case 'j':
+            printf("Jack of ");
+            break;
+        //queen
+        case 'Q':
+            printf("Queen of ");
+            break;
+        //king
+        case 'K':
+            printf("King of ");
+            break;
+        //10
+        case 't':
+            printf("10 of ");
+            break;
+        //numbers
+        default:
+            printf("%c of ",face);
+    }
+    switch(suit){
+        case 'H':
+            printf("Hearts\n");
+            break;
+        case 'D':
+            printf("Diamonds\n");
+            break;
+        case 'C':
+            printf("Clubs\n");
+            break;
+        case 'S':
+            printf("Spades\n");
+            break;
+    }
+    return 0;
 }
 
 int showDeck(char* deck){
@@ -27,7 +70,17 @@ int showDeck(char* deck){
         suit = *(deck+i*2+1);
         printf("\"%c%c\"\t",face,suit);
     }
-    return 1;
+    return 0;
+}
+
+int prettyShowDeck(char* deck){
+    char face,suit;
+    for(int i = 0;i < 52;i++){
+        face = *(deck+i*2+0);
+        suit = *(deck+i*2+1);
+        prettyDisplay(face,suit);
+    }
+    return 0;
 }
 
 int shuffleDeck(char* deck, int deckSize){
@@ -44,4 +97,5 @@ int cardGame(){
     //shuffle deck
 
     //show deck
+    prettyShowDeck(*deck);
 }
