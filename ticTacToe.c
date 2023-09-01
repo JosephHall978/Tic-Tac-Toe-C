@@ -102,9 +102,10 @@ void playerMove(char* board){
     while(1==1) {
         printf("Enter row number: ");
         scanf("%d", &rowMove);
-        printf("Enter column number: ");
         scanf("%*c");
+        printf("Enter column number: ");
         scanf("%d", &columnMove);
+        scanf("%*c");
         //input
         if (valid(rowMove, columnMove, board)) {
             addToken(rowMove, columnMove, board, 'X');
@@ -138,6 +139,6 @@ int ticTacToe() {
             moves++;
         }
     }
-    printf("%s",(winner==1)?"Player wins":(winner==2)?"Opponent wins":(winner==3)?"No one won":"Error");
+    printf("%s\n",(winner==1)?"Player wins":(winner==2)?"Opponent wins":(winner==3)?"No one won":"Error");
     return winner;
 }
