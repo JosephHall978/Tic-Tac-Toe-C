@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include "ticTacToe.h"
+#include "cardGame.h"
 
 int main(){
     int option;
     int playing=1;
+    cardGame();
+    /*
     while(playing) {
         printf("Fun games Written in C options below\n"
                "\t1. Tic Toe Game\n"
@@ -17,7 +20,7 @@ int main(){
                 ticTacToe();
                 break;
             case 2:
-                printf("under development\n");
+                cardGame();
                 break;
             case 3:
                 printf("Exiting games\n");
@@ -27,4 +30,5 @@ int main(){
                 printf("Invalid option\n");
         }
     }
+     */
 };
