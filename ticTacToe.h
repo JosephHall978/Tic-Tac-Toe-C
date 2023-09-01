@@ -4,5 +4,5 @@
 
 #ifndef CGames_TICTACTOE_H
 #define CGames_TICTACTOE_H
-int game();
+int ticTacToe();
 #endif //CGames_TICTACTOE_H

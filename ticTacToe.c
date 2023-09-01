@@ -114,7 +114,7 @@ void playerMove(char* board){
 
 }
 
-int game() {
+int ticTacToe() {
     int turn = 1;
     int winner = 0;//0 active game, 1 player win, 2 computer win, 3 draw
     int moves = 0;

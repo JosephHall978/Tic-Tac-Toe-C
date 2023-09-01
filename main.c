@@ -2,5 +2,5 @@
 #include "ticTacToe.h"
 
 int main(){
-    game();
+    ticTacToe();
 };
