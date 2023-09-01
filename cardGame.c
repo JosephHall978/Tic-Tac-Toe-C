@@ -2,6 +2,8 @@
 // Created by josep on 01/09/2023.
 //
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
 int generateDeck(char* deck){
     char face[] = {'A','2','3','4','5'
@@ -83,9 +85,21 @@ int prettyShowDeck(char* deck){
     return 0;
 }
 
-int shuffleDeck(char* deck, int deckSize){
+int shuffleDeck(char* deck, int deckSize, int shuffleNo){
     //take deck and shuffle cards
-    return 1;
+    srand(time(NULL));
+    for(int i = 0; i < shuffleNo; i++){
+        int firstIndex = rand()%51;
+        int secondIndex = rand()%51;
+        char tempCard[2] = {*(deck+firstIndex*2+0),*(deck+firstIndex*2+1)};
+
+        *(deck+firstIndex*2+0) = *(deck+secondIndex*2+0);
+        *(deck+firstIndex*2+1) = *(deck+secondIndex*2+1);
+
+        *(deck+secondIndex*2+0) = tempCard[0];
+        *(deck+secondIndex*2+1) = tempCard[1];
+    }
+    return 0;
 }
 
 int cardGame(){
@@ -95,7 +109,7 @@ int cardGame(){
     //show deck
     showDeck(*deck);
     //shuffle deck
-
+    shuffleDeck(*deck,52,100);
     //show deck
     prettyShowDeck(*deck);
 }
