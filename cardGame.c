@@ -65,25 +65,6 @@ int prettyDisplay(char face, char suit){
     return 0;
 }
 
-int showDeck(char* deck){
-    char face,suit;
-    for(int i = 0;i < 52;i++){
-        face = *(deck+i*2+0);
-        suit = *(deck+i*2+1);
-        printf("\"%c%c\"\t",face,suit);
-    }
-    return 0;
-}
-
-int prettyShowDeck(char* deck){
-    char face,suit;
-    for(int i = 0;i < 52;i++){
-        face = *(deck+i*2+0);
-        suit = *(deck+i*2+1);
-        prettyDisplay(face,suit);
-    }
-    return 0;
-}
 
 int shuffleDeck(char* deck, int deckSize, int shuffleNo){
     //take deck and shuffle cards
@@ -102,14 +83,71 @@ int shuffleDeck(char* deck, int deckSize, int shuffleNo){
     return 0;
 }
 
+int searchAce(char* deck){
+    for(int i=0;i<52;i++){
+        char card[2] = {*(deck+i*2),*(deck+i*2+1)};
+        if(card[0] == 'A' && card[1] == 'S'){
+            return i;
+        }
+    }
+    return INT_MAX;
+}
+
+int computerGuess(int low, int high){
+    int guess;
+    high--,low++;
+    srand(time(NULL));
+    guess = rand()%(high-low) + low;
+    return guess;
+}
+
 int cardGame(){
     char deck[52][2];
     //generate deck
     generateDeck(*deck);
-    //show deck
-    showDeck(*deck);
     //shuffle deck
     shuffleDeck(*deck,52,100);
-    //show deck
-    prettyShowDeck(*deck);
+    /*
+     * Find the ace of spades
+     * Guess a card
+     * When you guess the card you will find its identity
+     * You will then find out if the guess is higher or lower
+     */
+    int winner = 0;
+    int computerLowGuess = 0;
+    int computerHighGuess = 52;
+    int acePosition = searchAce(*deck);
+    int low = 0;
+    int high = 52;
+    while(winner == 0) {//0 is active, 1 is player win, 2 is computer win
+        int guess;
+        printf("Guess which card is the Ace of Spades: \n");
+        scanf("%d*c",&guess);
+        //high/low check
+        if(guess > acePosition){
+            printf("You guessed to high\n");
+        }else{
+            if(guess < acePosition){
+                printf("You guessed to low\n");
+            }
+            else{
+                winner = 1;
+            }
+        }
+        //computer guess
+        guess = computerGuess(low,high);
+        printf("Computer guesses %d\n",guess);
+        //computer adjusting guess range
+        if(guess > acePosition){
+            high = guess;
+        }else{
+            if(guess < acePosition){
+                low = guess;
+            }
+            else{
+                winner = 2;
+            }
+        }
+    }
+    printf("%s\n",(winner==1)?"Player wins":"Opponent wins");
 }
