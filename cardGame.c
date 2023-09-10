@@ -128,7 +128,7 @@ int cardGame(){
         printf("Guess which card is the Ace of Spades: \n");
         scanf("%d*c", &guess);
 
-        if(guess > 51 || guess < 0) {
+        while(guess > 51 || guess < 0) {
             printf("Guess which card is the Ace of Spades: \n");
             scanf("%d*c", &guess);
         }
