@@ -5,8 +5,7 @@
 int main(){
     int option;
     int playing=1;
-    cardGame();
-    /*
+
     while(playing) {
         printf("Fun games Written in C options below\n"
                "\t1. Tic Toe Game\n"
@@ -30,5 +29,5 @@ int main(){
                 printf("Invalid option\n");
         }
     }
-     */
+
 };
