@@ -96,8 +96,13 @@ int searchAce(char* deck){
 int computerGuess(int low, int high){
     int guess;
     high--,low++;
+    int difference = high-low;//find range of high and low
     srand(time(NULL));
-    guess = rand()%(high-low) + low;
+    if(difference != 0) {//prevents error from division by zero
+        guess = rand() % (difference) + low;//shift range up so guess is between high and low
+    }else{
+        return high;
+    }
     return guess;
 }
 
@@ -114,15 +119,22 @@ int cardGame(){
      * You will then find out if the guess is higher or lower
      */
     int winner = 0;
-    int computerLowGuess = 0;
-    int computerHighGuess = 52;
     int acePosition = searchAce(*deck);
     int low = 0;
     int high = 52;
     while(winner == 0) {//0 is active, 1 is player win, 2 is computer win
         int guess;
+
         printf("Guess which card is the Ace of Spades: \n");
-        scanf("%d*c",&guess);
+        scanf("%d*c", &guess);
+
+        if(guess > 51 || guess < 0) {
+            printf("Guess which card is the Ace of Spades: \n");
+            scanf("%d*c", &guess);
+        }
+
+        prettyDisplay(deck[guess][0],deck[guess][1]);
+
         //high/low check
         if(guess > acePosition){
             printf("You guessed to high\n");
